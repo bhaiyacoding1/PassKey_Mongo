@@ -11,9 +11,9 @@ const MainSection = () => {
     const [passwordArray, setpasswordArray] = useState([])
 
     const getPasswords = async () => {
-        let req = await fetch("http://localhost:3000/");
+        let req = await fetch("https://pass-key-mongo.vercel.app/");
         let passwords = await req.json();
-        console.log(passwords)
+        // console.log(passwords)
         setpasswordArray(passwords)
     }
 
@@ -54,12 +54,12 @@ const MainSection = () => {
     const savePassword = async () => {
         if (form.site.length < 40 && form.username.length < 10 && form.password.length < 8) {
 
-            await fetch("http://localhost:3000/", {
+            await fetch("https://pass-key-mongo.vercel.app/", {
                 method: "DELETE", headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({id: form.id }) })
 
             setpasswordArray([...passwordArray, { ...form, id: uuidv4() }])
-            await fetch("http://localhost:3000/", {
+            await fetch("https://pass-key-mongo.vercel.app/", {
                 method: "POST", headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ ...form, id: uuidv4() })
             })
@@ -88,7 +88,7 @@ const MainSection = () => {
         if (c) {
             setpasswordArray(passwordArray.filter(item => item.id !== id))
             // localStorage.setItem("passwords", JSON.stringify(passwordArray.filter(item => item.id !== id)))
-            let res = await fetch("http://localhost:3000/", {
+            let res = await fetch("https://pass-key-mongo.vercel.app/", {
                 method: "DELETE", headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ id })
             })

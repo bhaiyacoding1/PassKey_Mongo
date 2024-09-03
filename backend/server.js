@@ -8,7 +8,7 @@ const cors = require('cors')
 dotenv.config()
 
 // Connection URL
-const url = 'mongodb://localhost:27017';
+const url = 'mongodb+srv://bhaiyacoding1:v5nIeJXeVl9PpIlE@cluster0.nuggk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 const client = new MongoClient(url);
 
 // Database Name
@@ -46,5 +46,5 @@ app.delete('/', async (req, res) => {
   res.send({ success: true, result: findResult });
 })
 app.listen(port, () => {
-  console.log(`Example app listening on  http://localhost:${port}`)
+  // console.log(`Example app listening on  http://localhost:${port}`)
 })
